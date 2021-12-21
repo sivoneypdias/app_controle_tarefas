@@ -22,6 +22,13 @@ class RegisterController extends Controller
     |
     */
 
+    /*  Traits são pura e simplesmente para reuso de código, que pode nos auxiliar 
+        nos casos em que fatalmente precisamos cair no comportamento de “copiar e colar” 
+        determinados trechos de códigos em diferentes classes.
+
+        \vendor\laravel\ui\auth-backend\RegistersUsers.php
+        @see https://www.php.net/manual/pt_BR/language.oop5.traits.php
+     */
     use RegistersUsers;
 
     /**
