@@ -17,8 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// https://laravel.com/docs/8.x/verification#protecting-routes
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+->name('home')
+->middleware('verified');
 
-Route::resource('tarefa', 'App\Http\Controllers\TarefaController');
+Route::resource('tarefa', 'App\Http\Controllers\TarefaController')->middleware('verified');
