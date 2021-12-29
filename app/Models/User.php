@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\RedefinirSenhaNotification;
+use App\Notifications\VerificarEmailNotification;
 
+// https://laravel.com/docs/8.x/verification
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
@@ -52,5 +54,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new RedefinirSenhaNotification($token, $this->email));
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerificarEmailNotification());
     }
 }
