@@ -4,11 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Tarefa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TarefaController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
+    }
+
+     /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
     }
 
     /**
@@ -28,7 +44,7 @@ class TarefaController extends Controller
      */
     public function create()
     {
-        //
+        return view('tarefa.create');
     }
 
     /**
@@ -38,8 +54,14 @@ class TarefaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {        
+        Validator::make($request->all(), [
+            'tarefa' => 'required|max:200',
+            'data_limite_conclusao' => 'required',
+        ])->validate();
+
+        $tarefa = Tarefa::create($request->all());
+        return redirect()->route('tarefa.show',['tarefa' => $tarefa->id]);
     }
 
     /**
@@ -50,7 +72,7 @@ class TarefaController extends Controller
      */
     public function show(Tarefa $tarefa)
     {
-        //
+        echo $tarefa->get('tarefa');
     }
 
     /**
