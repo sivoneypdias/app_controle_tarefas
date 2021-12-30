@@ -46,13 +46,15 @@ class RedefinirSenhaNotification extends Notification
     {
 
         $url = url("/password/reset/{$this->token}?email={$this->email}");
+        $minutos = config('auth.passwords.'.config('auth.defaults.passwords').'.expire');
+
         // https://laravel.com/api/8.x/Illuminate/Notifications/Messages/MailMessage.html
         return (new MailMessage)
             ->subject('Redefinição de senha')
             ->greeting('Olá!')
             ->line('Você está recebendo este e-mail porque recebemos uma solicitação de redefinição de senha de sua conta.')
             ->action('Redefinir senha', $url)
-            ->line('Este link de redefinição de senha irá expirar em :count minutos.', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')])
+            ->line('Este link de redefinição de senha irá expirar em '.$minutos.' minutos.')
             ->line('Se você não solicitou uma redefinição de senha, nenhuma ação adicional será necessária.')
             ->salutation('Até breve,');    }
 
