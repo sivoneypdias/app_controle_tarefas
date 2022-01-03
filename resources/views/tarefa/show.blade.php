@@ -13,7 +13,7 @@
                             <label class="form-label">Data limite conclusão</label>
                             <input type="date" class="form-control" value="{{ $tarefa->data_limite_conclusao }}">
                         </div>                                            
-                    <fieldset>    
+                    </fieldset>    
                     <a href="{{ url()->previous() }}" class="btn btn-primary">Voltar</a>
                 </div>
             </div>
