@@ -92,7 +92,7 @@ class TarefaController extends Controller
      */
     public function edit(Tarefa $tarefa)
     {
-        //
+        return view('tarefa.edit', ['tarefa' => $tarefa]);
     }
 
     /**
@@ -104,7 +104,13 @@ class TarefaController extends Controller
      */
     public function update(Request $request, Tarefa $tarefa)
     {
-        //
+        Validator::make($request->all(), [
+            'tarefa' => 'required|max:200',
+            'data_limite_conclusao' => 'required',
+        ])->validate();
+
+        $tarefa->update($request->all());
+        return redirect()->route('tarefa.show',['tarefa' => $tarefa->id]);
     }
 
     /**
