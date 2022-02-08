@@ -19,5 +19,9 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
+
+Route::get('tarefa/exportacao', 'App\Http\Controllers\TarefaController@exportacao')
+->name('tarefa.exportacao');
+
 // https://laravel.com/docs/8.x/verification#protecting-routes
 Route::resource('tarefa', 'App\Http\Controllers\TarefaController')->middleware('verified');
