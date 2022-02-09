@@ -13,6 +13,6 @@ class Tarefa extends Model
 
     public function user(){
         // belongTo pertence a
-        return $this->belongTo('App\Models\User');
+        return $this->belongsTo('App\Models\User');
     }
 }
