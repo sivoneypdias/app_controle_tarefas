@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Exports\TarefasExport;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class TarefaController extends Controller
 {
@@ -149,5 +150,12 @@ class TarefaController extends Controller
         }
 
         return Excel::download(new TarefasExport, "tarefas.$extensao");
+    }
+
+    public function exportar(){
+        $tarefas = auth()->user()->tarefas()->get();
+
+        $pdf = PDF::loadView('tarefa.pdf', ['tarefas' => $tarefas]);
+        return $pdf->download('lista_de_tarefas.pdf');
     }
 }
