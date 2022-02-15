@@ -28,7 +28,8 @@
                                 {{ $errors->first('data_limite_conclusao') }}
                             </div>
                         @endif                        
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>                        
+                        <a href="{{ route('tarefa.index') }}" class="btn btn-danger" role="button">Cancelar</a>
                         </form>  
                 </div>
             </div>

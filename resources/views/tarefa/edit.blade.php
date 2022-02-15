@@ -30,6 +30,7 @@
                             </div>
                         @endif                        
                         <button type="submit" class="btn btn-primary">Atualizar</button>
+                        <a href="{{ route('tarefa.index') }}" class="btn btn-danger" role="button">Cancelar</a>
                         </form>  
                 </div>
             </div>
