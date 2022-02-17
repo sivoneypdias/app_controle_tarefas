@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <div class="row">
@@ -12,7 +12,9 @@
                         </div>    
                         <div class="col-6">
                             <div class="float-right">
-                                <a href="{{ route('tarefa.create') }}" class="mr-3">Novo</a>
+                                <a href="{{ route('tarefa.create') }}" class="mr-3">
+                                    Novo 
+                                </a>
                                 <a href="{{ route('tarefa.exportacao', ['extensao' => 'xlsx']) }}" class="mr-3">XLSX</a>
                                 <a href="{{ route('tarefa.exportacao', ['extensao' => 'csv']) }}" class="mr-3">CSV</a>
                                 <a href="{{ route('tarefa.exportacao', ['extensao' => 'pdf']) }}" class="mr-3">PDF</a>
@@ -25,8 +27,7 @@
                 <div class="card-body">
                     <table class="table">
                         <thead>
-                            <tr>
-                                <th scope="col">ID</th>
+                            <tr>                                
                                 <th scope="col">Tarefa</th>
                                 <th scope="col">Data limite conclusão</th>              
                                 <th></th>
@@ -35,17 +36,25 @@
                         </thead>
                         <tbody>
                             @foreach ($tarefas as $key => $t)
-                                <tr>
-                                    <th scope="row">{{ $t['id'] }}</th>
+                                <tr>                                    
                                     <td>{{ $t['tarefa'] }}</td>
                                     <td>{{ date('d/m/Y', strtotime($t['data_limite_conclusao']))}}</td>                            
-                                    <td><a href="{{ route('tarefa.edit', $t['id']) }}">Editar</a></td>
                                     <td>
+                                        <a href="{{ route('tarefa.edit', $t['id']) }}" class="btn btn-success" role="button" >
+                                        <i class="material-icons">edit</i>
+                                        </a>
+                                    </td>                                     
+                                    <td>                                    
                                         <form id="form_{{ $t['id'] }}" method="post" action="{{ route('tarefa.destroy', ['tarefa' => $t['id']]) }}">
-                                        @method('DELETE')
-                                        @csrf                                            
+                                            @method('DELETE')
+                                            @csrf                                            
                                         </form>
-                                        <a href="#" onclick="document.getElementById('form_{{ $t['id'] }}').submit()">Excluir</a>
+                                        <a href="#" class="btn btn-danger" role="button" 
+                                            onclick="if (confirm('Deseja excluir esta tarefa?')) {
+                                                        document.getElementById('form_{{ $t['id'] }}').submit();
+                                                    }">
+                                            <i class="material-icons">delete</i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
