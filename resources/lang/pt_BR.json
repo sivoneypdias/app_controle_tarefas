@@ -1,0 +1,16 @@
+{
+    "Reset Password": "Redefinir senha",
+    "E-Mail Address": "Endereço de E-mail",
+    "Password": "Senha",
+    "Confirm Password": "Confirme a Senha",
+    "You are logged in!": "Você está logado!",
+    "Verify Your Email Address": "Verifique seu endereço de e-mail",
+    "A fresh verification link has been sent to your email address.":"Um novo link de verificação foi enviado para seu endereço de e-mail.",
+    "Before proceeding, please check your email for a verification link.":"Antes de continuar, verifique seu e-mail para obter um link de verificação.",
+    "If you did not receive the email": "Se você não recebeu o email",
+    "click here to request another": "clique aqui para solicitar outro",
+    "Verify Email Address": "Verificar endereço de e-mail",
+    "Please click the button below to verify your email address.": "Clique no botão abaixo para verificar o seu endereço de e-mail.",
+    "If you did not create an account, no further action is required.": "Se você não criou uma conta, nenhuma ação adicional é necessária.",
+    "Send Password Reset Link": "Enviar link de redefinição de senha"
+}
