@@ -11,14 +11,31 @@
                             Tarefas 
                         </div>    
                         <div class="col-6">
-                            <div class="float-right">
-                                <a href="{{ route('tarefa.create') }}" class="mr-3">
+                            <div class="float-right">                                
+                                <a href="{{ route('tarefa.create') }}" class="btn btn-primary" role="button" title="Novo" alt="Novo">
                                     Novo 
                                 </a>
-                                <a href="{{ route('tarefa.exportacao', ['extensao' => 'xlsx']) }}" class="mr-3">XLSX</a>
-                                <a href="{{ route('tarefa.exportacao', ['extensao' => 'csv']) }}" class="mr-3">CSV</a>
-                                <a href="{{ route('tarefa.exportacao', ['extensao' => 'pdf']) }}" class="mr-3">PDF</a>
-                                <a href="{{ route('tarefa.exportar') }}" target="_blank">PDF V2</a>
+                                <!-- Single button -->
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle" title="Eportar" alt="Exportar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Exportar <i class="material-icons">file_download</i>                                         
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">                                        
+                                        <li title="PDF" alt="PDF">
+                                            <a href="{{ route('tarefa.exportar') }}" target="_blank" class="btn btn-default" role="button">
+                                            <i class="material-icons">save</i> PDF</a>
+                                        </li>
+                                        <li title="Excel" alt="Excel">
+                                            <a href="{{ route('tarefa.exportacao', ['extensao' => 'xlsx']) }}" class="btn btn-default" role="button">
+                                            <i class="material-icons">save</i> XLSX</a>
+                                        </li>
+                                        <li title="CSV" alt="CSV">
+                                            <a href="{{ route('tarefa.exportacao', ['extensao' => 'csv']) }}" class="btn btn-default" role="button" >
+                                            <i class="material-icons">save</i> CSV</a>
+                                        </li>                                        
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -40,7 +57,7 @@
                                     <td>{{ $t['tarefa'] }}</td>
                                     <td>{{ date('d/m/Y', strtotime($t['data_limite_conclusao']))}}</td>                            
                                     <td>
-                                        <a href="{{ route('tarefa.edit', $t['id']) }}" class="btn btn-success" role="button" >
+                                        <a href="{{ route('tarefa.edit', $t['id']) }}" class="btn btn-success" role="button" title="Editar" alt="Editar">
                                         <i class="material-icons">edit</i>
                                         </a>
                                     </td>                                     
@@ -49,7 +66,7 @@
                                             @method('DELETE')
                                             @csrf                                            
                                         </form>
-                                        <a href="#" class="btn btn-danger" role="button" 
+                                        <a href="#" class="btn btn-danger" role="button" title="Excluir" alt="Excluir"
                                             onclick="if (confirm('Deseja excluir esta tarefa?')) {
                                                         document.getElementById('form_{{ $t['id'] }}').submit();
                                                     }">
