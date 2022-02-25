@@ -40,7 +40,9 @@ class TarefaController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        $tarefas = Tarefa::where('user_id',$user_id)->paginate(10);
+        $tarefas = Tarefa::where('user_id',$user_id)
+                    ->orderBy('data_limite_conclusao', 'desc')
+                    ->paginate(10);
         return view('tarefa.index',['tarefas' => $tarefas]) ;
     }
 
@@ -153,7 +155,7 @@ class TarefaController extends Controller
     }
 
     public function exportar(){
-        $tarefas = auth()->user()->tarefas()->get();
+        $tarefas = auth()->user()->tarefas()->orderBy('data_limite_conclusao', 'desc')->get();
 
         $pdf = PDF::loadView('tarefa.pdf', ['tarefas' => $tarefas]);
         return $pdf->stream('lista_de_tarefas.pdf');
