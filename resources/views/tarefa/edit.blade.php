@@ -28,6 +28,20 @@
                             <div class="alert alert-danger" role="alert">
                                 {{ $errors->first('data_limite_conclusao') }}
                             </div>
+                        @endif
+                        <div class="mb-3">
+                            <label class="form-label">Hora</label>
+                            <input type="time" class="form-control" name="hora" value="{{ old('hora') ?? $tarefa->hora }}">
+                        </div>                        
+
+                         <div class="mb-3">
+                            <label class="form-label">Nota</label>
+                            <textarea class="form-control" name="nota" rows="3">{{ old('nota') ?? $tarefa->nota }}</textarea>
+                        </div>
+                        @if($errors->has('nota')) 
+                            <div class="alert alert-danger" role="alert">
+                                {{ $errors->first('nota') }}
+                            </div>
                         @endif                        
                         <button type="submit" class="btn btn-primary">Atualizar</button>
                         <a href="{{ route('tarefa.index') }}" class="btn btn-danger" role="button">Cancelar</a>

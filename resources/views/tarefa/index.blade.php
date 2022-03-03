@@ -47,8 +47,7 @@
                             <tr>                                
                                 <th scope="col">Tarefa</th>
                                 <th scope="col">Data limite conclusão</th>              
-                                <th></th>
-                                <th></th>
+                                <th colspan="3"></th>                                
                             </tr>
                         </thead>
                         <tbody>
@@ -56,6 +55,11 @@
                                 <tr>                                    
                                     <td>{{ $t['tarefa'] }}</td>
                                     <td>{{ date('d/m/Y', strtotime($t['data_limite_conclusao']))}}</td>                            
+                                    <td>
+                                        <a href="{{ route('tarefa.show', $t['id']) }}" class="btn btn-primary" role="button" title="Visualizar" alt="Visualizar">
+                                        <i class="material-icons">visibility</i>
+                                        </a>
+                                    </td>
                                     <td>
                                         <a href="{{ route('tarefa.edit', $t['id']) }}" class="btn btn-success" role="button" title="Editar" alt="Editar">
                                         <i class="material-icons">edit</i>

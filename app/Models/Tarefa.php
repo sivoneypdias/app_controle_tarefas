@@ -9,7 +9,16 @@ class Tarefa extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['tarefa','data_limite_conclusao','user_id'];
+    protected $fillable = ['tarefa','data_limite_conclusao','user_id','hora', 'nota'];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+    */
+    /* protected $casts = [
+        'hora' => 'datetime:hh:mm',
+    ];*/ 
 
     public function user(){
         // belongTo pertence a

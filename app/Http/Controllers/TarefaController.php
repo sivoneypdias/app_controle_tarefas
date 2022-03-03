@@ -63,17 +63,18 @@ class TarefaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {        
+    {
         Validator::make($request->all(), [
             'tarefa' => 'required|max:200',
             'data_limite_conclusao' => 'required',
+            'nota' => 'max:2000'
         ])->validate();
 
-        $dados = $request->all('tarefa','data_limite_conclusao');
+        $dados = $request->all('tarefa','data_limite_conclusao','hora','nota');
         $dados['user_id'] = auth()->user()->id;
         $tarefa = Tarefa::create($dados);
-        $destinatario = auth()->user()->email; 
-        Mail::to($destinatario)->send(new NovaTarefaMail($tarefa));
+        // $destinatario = auth()->user()->email; 
+        // Mail::to($destinatario)->send(new NovaTarefaMail($tarefa));
 
         return redirect()->route('tarefa.show',['tarefa' => $tarefa->id]);
     }
@@ -121,6 +122,7 @@ class TarefaController extends Controller
         Validator::make($request->all(), [
             'tarefa' => 'required|max:200',
             'data_limite_conclusao' => 'required',
+            'nota' => 'max:2000'
         ])->validate();
 
         $tarefa->update($request->all());
